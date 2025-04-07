@@ -51,7 +51,7 @@ class ModelTrainer:
             "Random Forest": RandomForestClassifier(verbose=1),
             "Decision Tree":DecisionTreeClassifier(),
             "Gradient Boosting": GradientBoostingClassifier(verbose=1),
-            "Logistic Regression":LogisticRegression(verbose=1),
+            "Logistic Regression":LogisticRegression(verbose=1,max_iter=1000),
             "AdaBoost":AdaBoostClassifier(),
         }
         params = {
@@ -125,7 +125,7 @@ class ModelTrainer:
         os.makedirs(model_dir_path,exist_ok=True)
         
         Network_Model=NetworkModel(preprocessor=preprocessor,model=best_model)
-        save_object(self.model_trainer_config,trained_model_file_path,obj=NetworkModel)
+        save_object(self.model_trainer_config.trained_model_file_path,obj=NetworkModel)
         
         ##Model trainer artifact
         model_trainer_artifact=ModelTrainerArtifact(trained_model_file_path=self.model_trainer_config.trained_model_file_path,
